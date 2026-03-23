@@ -135,7 +135,7 @@ const Footer = () => {
                 Twitter
               </a>
               <a
-                href="https://github.com/simplystudios"
+                href="https://github.com/DetroGo"
                 target="_blank"
                 rel="noreferrer"
               >

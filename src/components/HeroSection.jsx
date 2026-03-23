@@ -162,7 +162,7 @@ const HeroSection = () => {
       `}</style>
 
       {/* Banner */}
-      <div
+      {/* <div
         className="banner"
         style={{
           display: "flex",
@@ -182,7 +182,7 @@ const HeroSection = () => {
         <span>
           This site is fully responsive try switching colors and dark mode above
         </span>
-      </div>
+      </div>*/}
 
       {/* Hero */}
       <section className="hero">
