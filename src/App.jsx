@@ -123,8 +123,6 @@ function AppInner() {
     <M3eTheme color={color} scheme={scheme}>
       <div>
         <Navbar />
-        <p>Heyyy You Found the Wavy Line 🤫 I forgot to remove</p>
-        <WavySeparator />
         <main>
           <br />
           <br />
