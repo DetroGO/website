@@ -25,8 +25,8 @@ const accentFilters = {
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
-  { href: "#showcase", label: "Showcase" },
   { href: "#schematic", label: "Flow" },
+  { href: "#showcase", label: "Showcase" },
   { href: "#waitlist", label: "Sign Up" },
 ];
 
