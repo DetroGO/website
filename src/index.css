@@ -55,6 +55,10 @@ html {
     scroll-behavior: smooth;
 }
 
+:target {
+    scroll-margin-top: 84px;
+}
+
 body {
     font-family:
         "Inter",
@@ -330,6 +334,60 @@ body {
 .btn-large {
     padding: 16px 40px;
     font-size: 16px;
+}
+
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 24px;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.button-link-medium {
+    min-height: 40px;
+}
+
+.button-link-filled {
+    background: var(--md-sys-color-primary, var(--color-accent));
+    color: var(--md-sys-color-on-primary, #ffffff);
+}
+
+.button-link-tonal {
+    background: var(
+        --md-sys-color-secondary-container,
+        var(--color-accent-surface)
+    );
+    color: var(--md-sys-color-on-secondary-container, var(--color-accent));
+}
+
+.button-link:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.button-link:focus-visible {
+    outline: 3px solid
+        color-mix(
+            in srgb,
+            var(--md-sys-color-primary, var(--color-accent)) 36%,
+            transparent
+        );
+    outline-offset: 3px;
 }
 
 /* ====== DEVICE MOCKUPS ====== */

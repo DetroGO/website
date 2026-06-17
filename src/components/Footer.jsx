@@ -1,7 +1,11 @@
 import React from "react";
 import { useTheme } from "../useTheme";
 import WavySeparator from "./WavyDivder";
-import { GITHUB_REPO_URL } from "../constants/links";
+import {
+  GITHUB_REPO_URL,
+  THREADS_PROFILE_URL,
+  X_PROFILE_URL,
+} from "../constants/links";
 
 // Animated wavy lines — Google Expressive style
 const WavyLines = () => {
@@ -78,7 +82,7 @@ const Footer = () => {
           <div className="footer-grid">
             <div>
               <a
-                href="/"
+                href="#hero"
                 className="navbar-brand"
                 style={{
                   display: "flex",
@@ -121,14 +125,14 @@ const Footer = () => {
             <div className="footer-column">
               <h4>More</h4>
               <a
-                href="https://threads.com/@anshwadhwa8"
+                href={THREADS_PROFILE_URL}
                 target="_blank"
                 rel="noreferrer"
               >
                 Threads
               </a>
               <a
-                href="https://x.com/anshwadhwa8"
+                href={X_PROFILE_URL}
                 target="_blank"
                 rel="noreferrer"
               >

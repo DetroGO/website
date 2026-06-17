@@ -1,7 +1,8 @@
 import React from "react";
 import { M3eHeading } from "@m3e/react/heading";
-import { M3eButton } from "@m3e/react/button";
 import { M3eIcon } from "@m3e/react/icon";
+import { WAITLIST_FORM_URL } from "../constants/links";
+import ButtonLink from "./ButtonLink";
 
 const PERKS = [
   { icon: "android", text: "Android release updates" },
@@ -10,7 +11,6 @@ const PERKS = [
 ];
 
 const WaitlistSection = () => {
-  const WAITLIST_FORM_URL = "https://forms.gle/69tLCGZrFGDaMBUX7";
   return (
     <section id="waitlist" style={{ padding: "100px 0" }}>
       <style>{`
@@ -91,12 +91,12 @@ const WaitlistSection = () => {
           commute features are ready.
         </p>
 
-        <M3eButton
+        <ButtonLink
+          href={WAITLIST_FORM_URL}
           variant="filled"
           size="medium"
-          onClick={() =>
-            window.open(WAITLIST_FORM_URL, "_blank", "noopener,noreferrer")
-          }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <M3eIcon
             name="edit"
@@ -104,7 +104,7 @@ const WaitlistSection = () => {
             style={{ fontSize: 18, marginRight: 6 }}
           />
           Join the Waitlist
-        </M3eButton>
+        </ButtonLink>
 
         <p
           style={{

@@ -1,7 +1,8 @@
 import React from "react";
 import { M3eHeading } from "@m3e/react/heading";
-import { M3eButton } from "@m3e/react/button";
 import { M3eIcon } from "@m3e/react/icon";
+import { GITHUB_REPO_URL } from "../constants/links";
+import ButtonLink from "./ButtonLink";
 
 const CONTRIBUTOR_ITEMS = [
   {
@@ -31,7 +32,6 @@ const DATA_EXAMPLES = [
 ];
 
 const ContributorsSection = () => {
-  const GITHUB_REPO_URL = "https://github.com/DetroGO/";
   return (
     <section id="contributors" className="contributors-section">
       <style>{`
@@ -204,12 +204,12 @@ const ContributorsSection = () => {
         </div>
 
         <div className="contributors-cta">
-          <M3eButton
+          <ButtonLink
+            href={GITHUB_REPO_URL}
             variant="filled"
             size="medium"
-            onClick={() =>
-              window.open(GITHUB_REPO_URL, "_blank", "noopener,noreferrer")
-            }
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <M3eIcon
               name="code"
@@ -217,7 +217,7 @@ const ContributorsSection = () => {
               style={{ fontSize: 18, marginRight: 6 }}
             />
             Contribute on GitHub
-          </M3eButton>
+          </ButtonLink>
 
           <p className="contributors-note">
             You do not need to be an expert developer. Clear local knowledge and

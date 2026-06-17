@@ -9,6 +9,7 @@ import HeroSection from "./components/HeroSection";
 import SchematicSection from "./components/AppMotion";
 import FeaturesSection from "./components/FeaturesSection";
 import ShowcaseSection from "./components/ShowcaseSection";
+import AboutSection from "./components/AboutSection";
 import { M3eTheme } from "@m3e/react/theme";
 import Footer from "./components/Footer";
 

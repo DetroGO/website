@@ -1,5 +1,10 @@
 import React from "react";
 import { Github, Twitter, Globe } from "lucide-react";
+import {
+  GITHUB_PROFILE_URL,
+  PEERLIST_PROFILE_URL,
+  X_PROFILE_URL,
+} from "../constants/links";
 
 const techItems = [
   {
@@ -165,7 +170,7 @@ const AboutSection = () => {
               style={{ transitionDelay: "200ms" }}
             >
               <a
-                href="https://github.com/simplystudios"
+                href={GITHUB_PROFILE_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="about-link"
@@ -173,7 +178,7 @@ const AboutSection = () => {
                 <Github size={15} /> GitHub
               </a>
               <a
-                href="https://twitter.com/anshwadhwa8"
+                href={X_PROFILE_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="about-link"
@@ -181,7 +186,7 @@ const AboutSection = () => {
                 <Twitter size={15} /> Twitter
               </a>
               <a
-                href="https://peerlist.io/anshwadhwa"
+                href={PEERLIST_PROFILE_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="about-link"

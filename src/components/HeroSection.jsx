@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../useTheme";
-import { M3eButton } from "@m3e/react/button";
 import { M3eHeading, M3eIcon } from "@m3e/react/all";
 import { GITHUB_REPO_URL } from "../constants/links";
+import ButtonLink from "./ButtonLink";
 
 const THEME_IMAGES = {
   Green: {
@@ -291,24 +291,15 @@ const HeroSection = () => {
             </p>
             {/* Buttons */}
             <div className="hero-buttons">
-              <M3eButton
-                variant="filled"
-                size="medium"
-                onClick={() => {
-                  document
-                    .getElementById("waitlist")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                  history.replaceState(null, "", window.location.pathname);
-                }}
-              >
+              <ButtonLink href="#waitlist" variant="filled" size="medium">
                 Join Waitlist
-              </M3eButton>
-              <M3eButton
+              </ButtonLink>
+              <ButtonLink
+                href={GITHUB_REPO_URL}
                 variant="tonal"
                 size="medium"
-                onClick={() =>
-                  window.open(GITHUB_REPO_URL, "_blank", "noopener,noreferrer")
-                }
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <M3eIcon
                   name="code"
@@ -316,7 +307,7 @@ const HeroSection = () => {
                   style={{ fontSize: 18, marginRight: 6 }}
                 />
                 Contribute on GitHub
-              </M3eButton>
+              </ButtonLink>
             </div>
             <p className="hero-city-note">
               * Planned city support through community-contributed transit data.

@@ -68,7 +68,7 @@ const Navbar = () => {
       >
         {/* Brand */}
         <a
-          href="/"
+          href="#hero"
           className="navbar-brand"
           style={{
             display: "flex",
