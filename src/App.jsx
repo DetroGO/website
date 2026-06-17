@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import WaitlistSection from "./components/Waitlist";
-import { ThemeProvider, useTheme } from "./ThemeContext";
+import { ThemeProvider } from "./ThemeContext";
+import { useTheme } from "./useTheme";
 import Navbar from "./components/Navbar";
+import ContributorsSection from "./components/Contribute";
+
 import HeroSection from "./components/HeroSection";
 import SchematicSection from "./components/AppMotion";
 import FeaturesSection from "./components/FeaturesSection";
 import ShowcaseSection from "./components/ShowcaseSection";
-import AboutSection from "./components/AboutSection";
 import { M3eTheme } from "@m3e/react/theme";
 import Footer from "./components/Footer";
-import WavySeparator from "./components/WavyDivder";
-import { M3eButton } from "@m3e/react/button";
 
 // Inject global animation styles once
 
@@ -157,6 +157,7 @@ function AppInner() {
 
         <WaitlistSection />
 
+        <ContributorsSection />
         <Footer />
       </div>
     </M3eTheme>

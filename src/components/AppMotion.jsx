@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../useTheme";
 import { M3eHeading } from "@m3e/react/heading";
 import { M3eIcon } from "@m3e/react/icon";
 import { M3eCard } from "@m3e/react/card";
@@ -7,29 +7,30 @@ import { M3eCard } from "@m3e/react/card";
 const THEME_IMAGES = {
   Green: {
     light: [
-      "/detroflow/lightgreen/1774197223419_100.PNG",
-      "/detroflow/lightgreen/1774197229901_100.PNG",
-      "/detroflow/lightgreen/1774197241621_100.PNG",
-      "/detroflow/lightgreen/1774197249873_100.PNG",
-      "/detroflow/lightgreen/1774197260217_100.PNG",
+      "/v2/planner/greenplanlight.png",
+      "/v2/route/greenlight3.png",
+      "/v2/route/greenlight6.png",
+      "/v2/route/greenlight4.png",
     ],
     dark: [
-      "/detroflow/darkgreen/1774196915219_100.PNG",
-      "/detroflow/darkgreen/1774196926851_100.PNG",
-      "/detroflow/darkgreen/1774196935427_100.PNG",
-      "/detroflow/darkgreen/1774196948731_100.PNG",
-      "/detroflow/darkgreen/1774196965849_100.PNG",
-      "/detroflow/darkgreen/1774196996624_100.PNG",
+      "/v2/planner/greenplan.png",
+      "/v2/route/green3.png",
+      "/v2/route/green6.png",
+      "/v2/route/green4.png",
     ],
   },
   Red: {
-    light: ["/detroflow/lightred/1774198101724_100.PNG"],
+    light: [
+      "/v2/planner/purplelight.png",
+      "/v2/route/purplelight1.png",
+      "/v2/route/purplelight2.png",
+      "/v2/route/purplelight4.png",
+    ],
     dark: [
-      "/detroflow/darkred/1774198266083_100.PNG",
-      "/detroflow/darkred/1774198270812_100.PNG",
-      "/detroflow/darkred/1774198276606_100.PNG",
-      "/detroflow/darkred/1774198280289_100.PNG",
-      "/detroflow/darkred/1774198285179_100.PNG",
+      "/v2/planner/purpleplan.png",
+      "/v2/route/purple2.png",
+      "/v2/route/purple5.png",
+      "/v2/route/purple4.png",
     ],
   },
 };
@@ -67,21 +68,13 @@ const SchematicSection = () => {
   const images = themeSet[mode] || themeSet.light;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeStep, setActiveStep] = useState(0);
   const timerRef = useRef(null);
-
-  useEffect(() => {
-    setCurrentIndex(0);
-    setActiveStep(0);
-  }, [themeName, darkMode]);
+  const imageIndex = currentIndex % images.length;
+  const activeStep = imageIndex % STEPS.length;
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = (prev + 1) % images.length;
-        setActiveStep(next % STEPS.length);
-        return next;
-      });
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 2800);
     return () => clearInterval(timerRef.current);
   }, [images.length]);
@@ -132,7 +125,7 @@ const SchematicSection = () => {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           opacity: 0;
           transition: opacity 0.5s ease;
         }
@@ -225,7 +218,7 @@ const SchematicSection = () => {
                 key={src}
                 src={src}
                 alt={`Route map step ${i + 1}`}
-                className={`sm-img ${i === currentIndex ? "active" : ""}`}
+                className={`sm-img ${i === imageIndex ? "active" : ""}`}
               />
             ))}
           </div>
@@ -272,7 +265,6 @@ const SchematicSection = () => {
                 key={i}
                 className={`sm-step ${i === activeStep ? "active" : ""}`}
                 onClick={() => {
-                  setActiveStep(i);
                   setCurrentIndex(i % images.length);
                   clearInterval(timerRef.current);
                 }}

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useTheme } from "../ThemeContext";
+import React from "react";
+import { useTheme } from "../useTheme";
 import { M3eCard } from "@m3e/react/card";
 import { M3eHeading } from "@m3e/react/heading";
 import { M3eIcon } from "@m3e/react/icon";
@@ -8,37 +8,37 @@ const THEME_GALLERY = {
   Green: {
     light: [
       {
-        src: "/detross/lightmode/green/imghome.PNG",
-        alt: "DetroGo Home Green Light",
-      },
-      {
-        src: "/detross/lightmode/green/imgroute.PNG",
+        src: "/v2/homescreenlight/greenmed.png",
         alt: "DetroGo Route Green Light",
       },
       {
-        src: "/detross/lightmode/green/imgroutekirti.PNG",
+        src: "/v2/planner/greenlight.png",
         alt: "DetroGo Route Green Kirti",
       },
       {
-        src: "detroflow/lightgreen/1774197241621_100.PNG",
+        src: "/v2/planner/greenplanlight.png",
+        alt: "DetroGo Home Green Light",
+      },
+      {
+        src: "/v2/route/greenlight4.png",
         alt: "DetroGo Route Netaji",
       },
     ],
     dark: [
       {
-        src: "/detross/darkmode/green/imghome.PNG",
-        alt: "DetroGo Home Green Dark",
-      },
-      {
-        src: "/detross/darkmode/green/imgroutekirti.PNG",
+        src: "/v2/homescreen/greenmed.png",
         alt: "DetroGo Route Kirti Dark",
       },
       {
-        src: "/detross/darkmode/green/imgroutepink.PNG",
+        src: "/v2/planner/green.png",
         alt: "DetroGo Route Pink Dark",
       },
       {
-        src: "/detross/darkmode/green/imgrouteyellow.PNG",
+        src: "/v2/planner/greenplan.png",
+        alt: "DetroGo Home Green Dark",
+      },
+      {
+        src: "/v2/route/green6.png",
         alt: "DetroGo Route Yellow Dark",
       },
     ],
@@ -46,7 +46,7 @@ const THEME_GALLERY = {
   Blue: {
     light: [
       {
-        src: "/detross/lightmode/green/imghome.PNG",
+        src: "/v2/homescreenlight/greenmed.png",
         alt: "DetroGo Home Light",
       },
       {
@@ -77,22 +77,38 @@ const THEME_GALLERY = {
   Purple: {
     light: [
       {
-        src: "/detross/lightmode/purple/imghome.PNG",
-        alt: "DetroGo Home Purple Light",
+        src: "/v2/homescreenlight/bluemed.png",
+        alt: "DetroGo Home Purple Dark",
       },
       {
-        src: "/detross/lightmode/purple/imgrouteblue.PNG",
+        src: "/v2/planner/purplelight.png",
+        alt: "DetroGo Route Purple Red",
+      },
+      {
+        src: "/v2/planner/purpleplanlight.png",
         alt: "DetroGo Route Purple Blue",
+      },
+      {
+        src: "/v2/route/purplelight2.png",
+        alt: "DetroGo Route Purple Yellow",
       },
     ],
     dark: [
       {
-        src: "/detross/darkmode/purple/imghome.PNG",
+        src: "/v2/homescreen/purplemed.png",
         alt: "DetroGo Home Purple Dark",
       },
       {
-        src: "/detross/darkmode/purple/imgroutered.PNG",
+        src: "/v2/planner/purple.png",
         alt: "DetroGo Route Purple Red",
+      },
+      {
+        src: "/v2/planner/purpleplan.png",
+        alt: "DetroGo Route Purple Blue",
+      },
+      {
+        src: "/v2/route/purple5.png",
+        alt: "DetroGo Route Purple Yellow",
       },
     ],
   },
@@ -101,21 +117,21 @@ const THEME_GALLERY = {
 const stats = [
   {
     icon: "train",
-    value: "250+",
-    label: "Metro Stations",
-    desc: "All active DMRC stations covered across every line.",
+    value: "Delhi-NCR",
+    label: "Supported region",
+    desc: "Built around Delhi-NCR Metro with operational lines, route finding, and the system map.",
   },
   {
-    icon: "linear_scale",
-    value: "12",
-    label: "Metro Lines",
-    desc: "Every line including the Airport Express and Rapid Metro.",
+    icon: "offline_bolt",
+    value: "Fully offline",
+    label: "Routing and GPS",
+    desc: "Plan routes and use location-aware commute tools without depending on live connectivity.",
   },
   {
-    icon: "bolt",
-    value: "2x",
-    label: "Route Calculation",
-    desc: "BFS algorithm finds the shortest path instantly. With the Least amount of Interchange",
+    icon: "code",
+    value: "React Native",
+    label: "Open source app",
+    desc: "Material 3, dynamic colors, and GPL-licensed code built for a native Android experience.",
   },
 ];
 
@@ -125,18 +141,7 @@ const ShowcaseSection = () => {
   const mode = darkMode ? "dark" : "light";
   const themeSet = THEME_GALLERY[themeName] || THEME_GALLERY.Green;
   const gallery = themeSet[mode] || themeSet.light;
-
-  const [galleryKey, setGalleryKey] = useState(`${themeName}-${mode}`);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    setVisible(false);
-    const t = setTimeout(() => {
-      setGalleryKey(`${themeName}-${mode}-${Date.now()}`);
-      setVisible(true);
-    }, 200);
-    return () => clearTimeout(t);
-  }, [themeName, mode]);
+  const galleryKey = `${themeName}-${mode}`;
 
   return (
     <section
@@ -172,11 +177,11 @@ const ShowcaseSection = () => {
           margin-bottom: 12px;
         }
         .sc-stat-value {
-          font-size: 32px;
+          font-size: 24px;
           font-weight: 700;
-          line-height: 1;
+          line-height: 1.15;
           color: var(--md-sys-color-primary, var(--color-accent));
-          margin-bottom: 4px;
+          margin-bottom: 6px;
         }
         .sc-stat-label {
           font-size: 14px;
@@ -215,14 +220,14 @@ const ShowcaseSection = () => {
           className="section-subtitle reveal"
           style={{ textAlign: "center", transitionDelay: "80ms" }}
         >
-          DetroGo adapts to your device theme with full Material You support.
-          Every screen feels native.
+          Material 3 screens for search, route details, settings, maps, dark
+          mode, and light mode.
         </p>
 
         {/* Gallery */}
         <div
           key={galleryKey}
-          className={`showcase-gallery-wrap ${visible ? "visible" : "hidden"}`}
+          className="showcase-gallery-wrap visible"
         >
           <div className="showcase-gallery">
             {gallery.map((img, i) => (
@@ -238,7 +243,19 @@ const ShowcaseSection = () => {
           </div>
         </div>
 
-        {/* Static stat cards */}
+        <div style={{ textAlign: "center", marginTop: 64 }}>
+          <M3eHeading
+            variant="headline"
+            size="small"
+            emphasized
+            level="2"
+            className="reveal"
+          >
+            App facts
+          </M3eHeading>
+        </div>
+
+        {/* Product fact cards */}
         <div className="sc-stats-grid">
           {stats.map((s, i) => (
             <M3eCard

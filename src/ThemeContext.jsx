@@ -1,32 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
-
-const COLOR_PRESETS = [
-  {
-    name: "Green",
-    accent: "#1E5128",
-    accentLight: "#4CAF50",
-    accentSurface: "#e8f5e9",
-    bannerBg: "#c8e6c9",
-    bannerText: "#1b5e20",
-  },
-  {
-    name: "Purple",
-    accent: "#6A1B9A",
-    accentLight: "#AB47BC",
-    accentSurface: "#f3e5f5",
-    bannerBg: "#e1bee7",
-    bannerText: "#4a148c",
-  },
-];
-
-const ThemeContext = createContext();
-export const useTheme = () => useContext(ThemeContext);
+import React, { useState, useEffect, useCallback } from "react";
+import { COLOR_PRESETS, ThemeContext } from "./themeContextCore";
 
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {

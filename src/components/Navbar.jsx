@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../useTheme";
 import ColorPicker from "./ColorPicker";
 import { M3eIconButton } from "@m3e/react/icon-button";
 import { Sun, Moon, Menu, X } from "lucide-react";
@@ -26,8 +26,8 @@ const accentFilters = {
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
   { href: "#schematic", label: "Flow" },
-  { href: "#showcase", label: "Showcase" },
-  { href: "#waitlist", label: "Sign Up" },
+  { href: "#waitlist", label: "Waitlist" },
+  { href: "#contributors", label: "Contribute" },
 ];
 
 const Navbar = () => {

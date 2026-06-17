@@ -6,33 +6,33 @@ import { M3eIcon } from "@m3e/react/icon";
 const features = [
   {
     icon: "route",
-    title: "Intelligent Pathfinding",
-    desc: "Custom routing engine utilizing BFS Algorithm for the fastest route across all active lines.",
+    title: "BFS Route Planning",
+    desc: "A focused routing engine finds Delhi-NCR Metro paths quickly from local transit data.",
   },
   {
     icon: "map_search",
-    title: "Schematic Route Map",
-    desc: "A clean, color-coded line diagram of your exact route easier to read than any metro map.",
+    title: "Interactive Route Map",
+    desc: "Minimal schematic maps make stations, line changes, and your route easy to understand at a glance.",
   },
   {
-    icon: "bolt",
-    title: "Material 3 UI",
-    desc: "Fluid animations, BottomSheetBehavior, and responsive layouts designed under strict M3 guidelines.",
+    icon: "map",
+    title: "In-App System Map",
+    desc: "The supported region map is built into the app, so commuters do not need to jump between tools.",
   },
   {
-    icon: "diversity_1",
-    title: "Open Source",
-    desc: "Every line of code is public. Built with the community, for the community.",
+    icon: "near_me",
+    title: "Nearest Station",
+    desc: "Find the closest station automatically and start planning from where you actually are.",
   },
   {
     icon: "palette",
-    title: "Dynamic Colors",
-    desc: "Full support for Android's Material You (Monet) theme engine, adapting to your wallpaper.",
+    title: "Material You",
+    desc: "Material 3 layouts, dynamic colors, and a native-feeling Android interface keep the app clean.",
   },
   {
-    icon: "history",
-    title: "Helpful Community",
-    desc: "A growing community of Delhi commuters helping each other navigate smarter.",
+    icon: "dark_mode",
+    title: "Offline + AMOLED",
+    desc: "Routing and GPS work offline, with an AMOLED mode for a pure black night-friendly experience.",
   },
 ];
 
@@ -42,16 +42,16 @@ const comparisonItems = {
     "No transparency over your data",
     "Irrelevant content everywhere",
     "Inconsistent UI & UX",
-    "No community support",
-    "Closed Sourced",
+    "Hard to verify route data",
+    "Closed source",
   ],
   detro: [
-    "No Ads Ever.",
-    "No data is collected just search and go",
-    "Supported entirely by donations, no investors",
-    "Follows Material 3 Design Principles",
-    "A community of real Delhi metro commuters",
-    "Fully Open Source and Made with the Community",
+    "Route planning without unrelated services",
+    "Offline routing and GPS support",
+    "Interactive map and in-app system map",
+    "Nearest station search built in",
+    "Material 3, dynamic colors, AMOLED mode",
+    "Open source under GPL 3.0",
   ],
 };
 
@@ -281,7 +281,7 @@ const FeaturesSection = () => {
             className="section-subtitle reveal"
             style={{ transitionDelay: "80ms" }}
           >
-            Everything you need for seamless metro navigation.
+            Current app details from the DetroGo project.
           </p>
         </div>
 

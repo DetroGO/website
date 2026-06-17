@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../useTheme";
 import { Palette } from "lucide-react";
 import { M3eIconButton } from "@m3e/react/icon-button";
 import { M3eIcon } from "@m3e/react/icon";

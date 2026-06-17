@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { useTheme } from "../ThemeContext";
+import React from "react";
+import { useTheme } from "../useTheme";
 import WavySeparator from "./WavyDivder";
-import { M3eIconButton } from "@m3e/react/icon-button";
+import { GITHUB_REPO_URL } from "../constants/links";
 
 // Animated wavy lines — Google Expressive style
 const WavyLines = () => {
@@ -135,7 +135,7 @@ const Footer = () => {
                 Twitter
               </a>
               <a
-                href="https://github.com/DetroGo"
+                href={GITHUB_REPO_URL}
                 target="_blank"
                 rel="noreferrer"
               >

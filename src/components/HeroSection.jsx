@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../useTheme";
 import { M3eButton } from "@m3e/react/button";
 import { M3eHeading, M3eIcon } from "@m3e/react/all";
+import { GITHUB_REPO_URL } from "../constants/links";
 
 const THEME_IMAGES = {
   Green: {
     light: [
-      "/detross/lightmode/green/imghome.PNG",
-      "/detross/lightmode/green/imgroute.PNG",
-      "/detross/lightmode/green/imgroutekirti.PNG",
+      "/v2/getstarted/greenwhite.png",
+      "/v2/homescreenlight/greenmed.png",
+      "/v2/route/greenlight3.png",
+      "/v2/route/greenlight2.png",
     ],
     dark: [
-      "/detross/darkmode/green/imghome.PNG",
-      "/detross/darkmode/green/imgroutekirti.PNG",
-      "/detross/darkmode/green/imgroutepink.PNG",
-      "/detross/darkmode/green/imgrouteyellow.PNG",
+      "/v2/getstarted/green.png",
+      "/v2/homescreen/greenmed.png",
+      "/v2/planner/greenplan.png",
+      "/v2/route/green5.png",
+      "/v2/route/green6.png",
     ],
   },
   Blue: {
@@ -32,15 +35,29 @@ const THEME_IMAGES = {
   },
   Purple: {
     light: [
-      "/detross/lightmode/purple/imghome.PNG",
-      "/detross/lightmode/purple/imgrouteblue.PNG",
+      "/v2/getstarted/purplewhite.png",
+      "/v2/homescreenlight/bluemed.png",
+      "/v2/planner/purpleplanlight.png",
+      "/v2/route/purplelight2.png",
+      "/v2/route/purplelight4.png",
     ],
     dark: [
-      "/detross/darkmode/purple/imghome.PNG",
-      "/detross/darkmode/purple/imgroutered.PNG",
+      "/v2/getstarted/purple.png",
+      "/v2/homescreen/purplemed.png",
+      "/v2/planner/purpleplan.png",
+      "/v2/route/purple2.png",
+      "/v2/route/purple5.png",
     ],
   },
 };
+
+const HERO_CITIES = [
+  { name: "Delhi-NCR", future: false },
+  { name: "Mumbai", future: true },
+  { name: "Bengaluru", future: true },
+  { name: "Chennai", future: true },
+  { name: "Hyderabad", future: true },
+];
 
 const HeroSection = () => {
   const { colorIndex, presets, darkMode } = useTheme();
@@ -50,23 +67,35 @@ const HeroSection = () => {
   const images = themeSet[mode] || themeSet.light;
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cityIndex, setCityIndex] = useState(0);
   const [fading, setFading] = useState(false);
   const timerRef = useRef(null);
-
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [themeName, darkMode]);
+  const cityTimerRef = useRef(null);
+  const fadeTimerRef = useRef(null);
+  const imageIndex = currentIndex % images.length;
+  const city = HERO_CITIES[cityIndex % HERO_CITIES.length];
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setFading(true);
-      setTimeout(() => {
+      fadeTimerRef.current = setTimeout(() => {
         setCurrentIndex((i) => (i + 1) % images.length);
         setFading(false);
       }, 400);
     }, 3200);
-    return () => clearInterval(timerRef.current);
-  }, [images.length, currentIndex]);
+    return () => {
+      clearInterval(timerRef.current);
+      clearTimeout(fadeTimerRef.current);
+    };
+  }, [images.length]);
+
+  useEffect(() => {
+    cityTimerRef.current = setInterval(() => {
+      setCityIndex((i) => (i + 1) % HERO_CITIES.length);
+    }, 2200);
+
+    return () => clearInterval(cityTimerRef.current);
+  }, []);
 
   return (
     <>
@@ -82,6 +111,10 @@ const HeroSection = () => {
         @keyframes badgeIn {
           from { opacity: 0; transform: translateX(-10px); }
           to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes citySwap {
+          from { opacity: 0; transform: translateY(0.16em); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
         .hero-badge {
@@ -103,11 +136,36 @@ const HeroSection = () => {
           margin-bottom: 16px;
         }
 
+        .hero-city-name {
+          display: inline-block;
+          min-width: 9.8ch;
+
+          color: var(--md-sys-color-on-surface, var(--color-text));
+          animation: citySwap 0.32s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        .hero-city-future-mark {
+          font-size: 0.60em;
+          vertical-align: super;
+          margin-right: 0.08em;
+          color: var(--md-sys-color-primary, var(--color-accent));
+        }
+
+        .hero-city-note {
+          animation: heroIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.35s both;
+          margin: 12px 0 0;
+          font-size: 12px;
+          line-height: 1.5;
+          color: var(--md-sys-color-on-surface-variant, var(--color-text-muted));
+          opacity: 0.78;
+        }
+
         .hero-buttons {
           animation: heroIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s both;
           display: flex;
           gap: 12px;
           flex-wrap: wrap;
+          align-items: center;
         }
 
         .hero-phone-wrap {
@@ -133,8 +191,9 @@ const HeroSection = () => {
           position: relative;
           z-index: 1;
           width: 280px;
+          height: 100%;
           border-radius: 32px;
-
+          margin-right: 10px;
 
           transition: opacity 0.4s ease;
         }
@@ -185,20 +244,19 @@ const HeroSection = () => {
       </div>*/}
 
       {/* Hero */}
-      <section className="hero">
+      <section id="hero" className="hero">
         <div className="container hero-layout">
           {/* Left: text */}
           <div className="hero-text">
             {/* Badge */}
             <div className="hero-badge">
               <M3eIcon
-                name="calendar_today"
+                name="wifi_off"
                 variant="rounded"
                 style={{ fontSize: 16 }}
               />
-              Coming Soon To Delhi-NCR
+              Offline-first Transit App
             </div>
-
             {/* Title */}
             <div className="hero-title-wrap">
               <M3eHeading
@@ -208,24 +266,29 @@ const HeroSection = () => {
                 level="1"
                 style={{ lineHeight: 1.1 }}
               >
-                Delhi Metro
+                Plan{" "}
+                <span className="hero-city-name" key={city.name}>
+                  {city.name}
+                  {city.future && (
+                    <span className="hero-city-future-mark">*</span>
+                  )}
+                </span>
                 <br />
                 <span
                   style={{
                     color: "var(--md-sys-color-primary, var(--color-accent))",
                   }}
                 >
-                  done right.
+                  routes, offline.
                 </span>
               </M3eHeading>
             </div>
-
             {/* Subtitle */}
             <p className="hero-subtitle">
-              Now getting around Delhi-NCR just became effortless, built on
-              Material 3 with clean interactive Route Maps.
+              DetroGo is a minimal Material 3 transit app for commuters who just
+              want route planning, system maps, nearest stations, and saved
+              commute tools without the clutter.
             </p>
-
             {/* Buttons */}
             <div className="hero-buttons">
               <M3eButton
@@ -244,21 +307,27 @@ const HeroSection = () => {
                 variant="tonal"
                 size="medium"
                 onClick={() =>
-                  document
-                    .getElementById("features")
-                    ?.scrollIntoView({ behavior: "smooth" })
+                  window.open(GITHUB_REPO_URL, "_blank", "noopener,noreferrer")
                 }
               >
-                Explore Features
+                <M3eIcon
+                  name="code"
+                  variant="rounded"
+                  style={{ fontSize: 18, marginRight: 6 }}
+                />
+                Contribute on GitHub
               </M3eButton>
             </div>
+            <p className="hero-city-note">
+              * Planned city support through community-contributed transit data.
+            </p>
           </div>
 
           {/* Right: phone */}
           <img
-            key={currentIndex}
-            src={images[currentIndex]}
-            alt={`DetroGo Screenshot ${currentIndex + 1}`}
+            key={`${themeName}-${mode}-${imageIndex}`}
+            src={images[imageIndex]}
+            alt={`DetroGo Android app screenshot ${imageIndex + 1}`}
             className={`hero-phone-img ${fading ? "fade-out" : "fade-in"}`}
           />
         </div>
