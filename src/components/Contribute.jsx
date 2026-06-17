@@ -2,7 +2,6 @@ import React from "react";
 import { M3eHeading } from "@m3e/react/heading";
 import { M3eButton } from "@m3e/react/button";
 import { M3eIcon } from "@m3e/react/icon";
-import { GITHUB_REPO_URL } from "../constants/links";
 
 const CONTRIBUTOR_ITEMS = [
   {
@@ -32,6 +31,7 @@ const DATA_EXAMPLES = [
 ];
 
 const ContributorsSection = () => {
+  const GITHUB_REPO_URL = "https://github.com/simplystudios/DetroGo";
   return (
     <section id="contributors" className="contributors-section">
       <style>{`
@@ -192,7 +192,10 @@ const ContributorsSection = () => {
           ))}
         </div>
 
-        <div className="contributors-examples" aria-label="Contribution examples">
+        <div
+          className="contributors-examples"
+          aria-label="Contribution examples"
+        >
           {DATA_EXAMPLES.map((item) => (
             <span className="contributors-example" key={item}>
               {item}
@@ -217,8 +220,8 @@ const ContributorsSection = () => {
           </M3eButton>
 
           <p className="contributors-note">
-            You do not need to be an expert developer. Clear local knowledge
-            and verified corrections are just as useful as code.
+            You do not need to be an expert developer. Clear local knowledge and
+            verified corrections are just as useful as code.
           </p>
         </div>
       </div>
