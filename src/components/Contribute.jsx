@@ -31,7 +31,7 @@ const DATA_EXAMPLES = [
 ];
 
 const ContributorsSection = () => {
-  const GITHUB_REPO_URL = "https://github.com/simplystudios/DetroGo";
+  const GITHUB_REPO_URL = "https://github.com/DetroGO/";
   return (
     <section id="contributors" className="contributors-section">
       <style>{`
