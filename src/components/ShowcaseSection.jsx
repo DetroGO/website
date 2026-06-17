@@ -135,6 +135,25 @@ const stats = [
   },
 ];
 
+const PROMO_IMAGES = [
+  {
+    src: "/promos/planning-commute.png",
+    alt: "Planning your commute is easier than ever in DetroGo",
+  },
+  {
+    src: "/promos/minimal-clean-bold.png",
+    alt: "DetroGo map search screen with metro lines",
+  },
+  {
+    src: "/promos/beautiful-navigation.png",
+    alt: "DetroGo route detail screen for Yamuna Bank",
+  },
+  {
+    src: "/promos/daily-commutes.png",
+    alt: "DetroGo saved routes and recent trips screen",
+  },
+];
+
 const ShowcaseSection = () => {
   const { colorIndex, presets, darkMode } = useTheme();
   const themeName = presets[colorIndex]?.name || "Green";
@@ -194,6 +213,68 @@ const ShowcaseSection = () => {
           line-height: 1.5;
           color: var(--md-sys-color-on-surface-variant, var(--color-text-muted));
         }
+        .sc-promo-section {
+          margin-top: 72px;
+        }
+        .sc-promo-header {
+          text-align: center;
+          margin-bottom: 28px;
+        }
+        .sc-promo-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+          align-items: start;
+        }
+        .sc-promo-card {
+          margin: 0;
+          overflow: hidden;
+          border-radius: 24px;
+          background: var(--md-sys-color-surface-container, var(--color-card-bg));
+          border: 1px solid var(--md-sys-color-outline-variant, var(--color-border));
+          box-shadow: var(--shadow-card);
+          aspect-ratio: 37 / 80;
+          transition:
+            transform 0.28s ease,
+            box-shadow 0.28s ease;
+        }
+        .sc-promo-card:hover {
+          transform: translateY(-6px);
+          box-shadow: var(--shadow-lg);
+        }
+        .sc-promo-card img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        @media (max-width: 980px) {
+          .sc-promo-grid {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 4px 24px 18px;
+            margin: 0 -24px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+          }
+          .sc-promo-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .sc-promo-card {
+            flex: 0 0 min(64vw, 280px);
+            scroll-snap-align: center;
+          }
+        }
+        @media (max-width: 560px) {
+          .sc-promo-section {
+            margin-top: 56px;
+          }
+          .sc-promo-card {
+            flex-basis: min(74vw, 260px);
+            border-radius: 20px;
+          }
+        }
       `}</style>
 
       <div className="container">
@@ -239,6 +320,31 @@ const ShowcaseSection = () => {
                   animation: `galleryFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) ${i * 80}ms both`,
                 }}
               />
+            ))}
+          </div>
+        </div>
+
+        <div className="sc-promo-section">
+          <div className="sc-promo-header">
+            <M3eHeading
+              variant="headline"
+              size="small"
+              emphasized
+              level="2"
+              className="reveal"
+            >
+              Commute, at a glance
+            </M3eHeading>
+          </div>
+          <div className="sc-promo-grid" aria-label="DetroGo promotional screens">
+            {PROMO_IMAGES.map((img, i) => (
+              <figure
+                key={img.src}
+                className="sc-promo-card reveal"
+                style={{ transitionDelay: `${i * 70}ms` }}
+              >
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </figure>
             ))}
           </div>
         </div>
